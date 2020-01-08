@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace BTD6Automater
@@ -35,12 +33,6 @@ namespace BTD6Automater
             Thread.Sleep(milliseconds);
         }
 
-        private void PressSpace()
-        {
-            _gameWindow.SendKey(" ");
-            Wait(MINIMUM_DELAY);
-        }
-
         public Tower PlaceTower(TowerType tower, int locationX, int locationY)
         {
             Console.WriteLine("Placing tower " + tower + " at location [" + locationX + ", " + locationY + "]");
@@ -52,13 +44,35 @@ namespace BTD6Automater
             return new Tower(locationX, locationY);
         }
 
-        public void UpgradeTower(Tower tower, Path path)
+        public void UpgradeTower(Tower tower, UpgradePath path)
         {
             _gameWindow.SendClick(tower.X, tower.Y);
             Wait(MINIMUM_DELAY);
             _gameWindow.SendKey(GetHotkey(path));
             Wait(MINIMUM_DELAY);
             _gameWindow.SendKey("{ESC}");
+        }
+
+        public void Restart()
+        {
+            _gameWindow.SendKey("{ESC}");
+            Wait(BUTTON_DELAY);
+            _gameWindow.SendClick(780, 640);
+            Wait(BUTTON_DELAY);
+            _gameWindow.SendClick(830, 530);
+        }
+
+        public void GoFreePlay()
+        {
+            _gameWindow.SendClick(820, 650);
+            Wait(BUTTON_DELAY);
+            _gameWindow.SendClick(660, 540);
+        }
+
+        private void PressSpace()
+        {
+            _gameWindow.SendKey(" ");
+            Wait(MINIMUM_DELAY);
         }
 
         private void SelectTower(TowerType tower)
@@ -76,7 +90,7 @@ namespace BTD6Automater
             return towerHotkeys[tower];
         }
 
-        private string GetHotkey(Path upgradePath)
+        private string GetHotkey(UpgradePath upgradePath)
         {
             return upgradeHotkeys[upgradePath];
         }
@@ -107,27 +121,11 @@ namespace BTD6Automater
             { TowerType.Engineer, "l" }
         };
 
-        internal void Restart()
+        private Dictionary<UpgradePath, string> upgradeHotkeys = new Dictionary<UpgradePath, string>
         {
-            _gameWindow.SendKey("{ESC}");
-            Wait(BUTTON_DELAY);
-            _gameWindow.SendClick(780, 640);
-            Wait(BUTTON_DELAY);
-            _gameWindow.SendClick(830, 530);
-        }
-
-        internal void GoFreePlay()
-        {
-            _gameWindow.SendClick(820, 650);
-            Wait(BUTTON_DELAY);
-            _gameWindow.SendClick(660, 540);
-        }
-
-        private Dictionary<Path, string> upgradeHotkeys = new Dictionary<Path, string>
-        {
-            { Path.Top, "," },
-            { Path.Middle, "." },
-            { Path.Bottom, "é" },
+            { UpgradePath.Top, "," },
+            { UpgradePath.Middle, "." },
+            { UpgradePath.Bottom, "é" },
         };
     }
 }

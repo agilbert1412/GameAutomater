@@ -46,6 +46,7 @@
     <Compile Include="ScriptedGame.cs" />
     <Compile Include="Tower.cs" />
     <Compile Include="TowerType.cs" />
+    <Compile Include="UpgradePath.cs" />
     <Compile Include="GamePlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowInteractions.cs" />

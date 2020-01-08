@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BTD6Automater
 {
@@ -24,21 +22,6 @@ namespace BTD6Automater
 
             PrepareKeyWordDictionary();
         }
-
-        private void DoAction(string action)
-        {
-            var actionComponents = action.Trim().Split(new char[]{ ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            if (actionComponents.Count() < 1)
-            {
-                return;
-            }
-            
-            var keyword = actionComponents[0].ToLower();
-            if (actionKeywords.ContainsKey(keyword))
-            {
-                actionKeywords[keyword](actionComponents);
-            }
-        }
          
         public void DoActions()
         {
@@ -57,6 +40,21 @@ namespace BTD6Automater
         public override string ToString()
         {
             return _name;
+        }
+
+        private void DoAction(string action)
+        {
+            var actionComponents = action.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (actionComponents.Count() < 1)
+            {
+                return;
+            }
+
+            var keyword = actionComponents[0].ToLower();
+            if (actionKeywords.ContainsKey(keyword))
+            {
+                actionKeywords[keyword](actionComponents);
+            }
         }
 
         private void Wait(string[] args)
@@ -118,9 +116,9 @@ namespace BTD6Automater
             return (TowerType) Enum.Parse(typeof(TowerType), name, true);
         }
 
-        private Path GetPath(string name)
+        private UpgradePath GetPath(string name)
         {
-            return (Path)Enum.Parse(typeof(Path), name, true);
+            return (UpgradePath)Enum.Parse(typeof(UpgradePath), name, true);
         }
     }
 }

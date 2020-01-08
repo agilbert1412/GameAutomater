@@ -25,11 +25,4 @@
         Village,
         Engineer
     }
-
-    public enum Path
-    {
-        Top,
-        Middle,
-        Bottom
-    }
 }

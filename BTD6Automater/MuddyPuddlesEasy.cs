@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BTD6Automater
 {
@@ -31,58 +27,58 @@ namespace BTD6Automater
             var sniper1 = _player.PlaceTower(TowerType.Sniper, 1100, 300);
 
             _player.Wait(10000);
-            _player.UpgradeTower(sniper1, Path.Bottom);
+            _player.UpgradeTower(sniper1, UpgradePath.Bottom);
 
             _player.Wait(11500);
-            _player.UpgradeTower(sniper1, Path.Bottom);
+            _player.UpgradeTower(sniper1, UpgradePath.Bottom);
 
             _player.Wait(10500);
-            _player.UpgradeTower(sniper1, Path.Top);
+            _player.UpgradeTower(sniper1, UpgradePath.Top);
 
             _player.Wait(93000);
-            _player.UpgradeTower(sniper1, Path.Bottom);
+            _player.UpgradeTower(sniper1, UpgradePath.Bottom);
 
             _player.Wait(56000);
-            _player.UpgradeTower(sniper1, Path.Bottom);
+            _player.UpgradeTower(sniper1, UpgradePath.Bottom);
 
             _player.Wait(13000);
-            _player.UpgradeTower(sniper1, Path.Top);
+            _player.UpgradeTower(sniper1, UpgradePath.Top);
 
             _player.Wait(3000);
             var sniper2 = _player.PlaceTower(TowerType.Sniper, 1100, 400);
 
             _player.Wait(4000);
-            _player.UpgradeTower(sniper2, Path.Middle);
+            _player.UpgradeTower(sniper2, UpgradePath.Middle);
 
             _player.Wait(4000);
-            _player.UpgradeTower(sniper2, Path.Top);
+            _player.UpgradeTower(sniper2, UpgradePath.Top);
 
             _player.Wait(13000);
-            _player.UpgradeTower(sniper2, Path.Top);
+            _player.UpgradeTower(sniper2, UpgradePath.Top);
 
             _player.Wait(3000);
-            _player.UpgradeTower(sniper2, Path.Middle);
+            _player.UpgradeTower(sniper2, UpgradePath.Middle);
 
             _player.Wait(33000);
-            _player.UpgradeTower(sniper2, Path.Middle);
+            _player.UpgradeTower(sniper2, UpgradePath.Middle);
 
             _player.Wait(3000);
             var sniper3 = _player.PlaceTower(TowerType.Sniper, 1100, 500);
 
             _player.Wait(3000);
-            _player.UpgradeTower(sniper3, Path.Top);
+            _player.UpgradeTower(sniper3, UpgradePath.Top);
 
             _player.Wait(15000);
-            _player.UpgradeTower(sniper3, Path.Top);
+            _player.UpgradeTower(sniper3, UpgradePath.Top);
 
             _player.Wait(3000);
-            _player.UpgradeTower(sniper3, Path.Bottom);
+            _player.UpgradeTower(sniper3, UpgradePath.Bottom);
 
             _player.Wait(3000);
-            _player.UpgradeTower(sniper3, Path.Bottom);
+            _player.UpgradeTower(sniper3, UpgradePath.Bottom);
 
             _player.Wait(15000);
-            _player.UpgradeTower(sniper3, Path.Bottom);
+            _player.UpgradeTower(sniper3, UpgradePath.Bottom);
             
             _player.Wait(45000);
             _player.GoFreePlay();
