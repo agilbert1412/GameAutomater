@@ -6,12 +6,27 @@ namespace GameAutomater
 {
     public class ScriptLoader
     {
-        public IEnumerable<ScriptedGame> LoadScripts(GamePlayer gamePlayer, string path, string fileExtension)
+
+        private static string[] SCRIPT_PATHS = new string[]
         {
-            var files = Directory.EnumerateFiles(path, "*" + fileExtension, SearchOption.AllDirectories);
-            foreach (var strategyFile in files)
+            @"..\..\..\Scripts\",
+            @".\Scripts\"
+        };
+
+        public IEnumerable<ScriptedGame> LoadScripts(GamePlayer gamePlayer, string fileExtension)
+        {
+            foreach (var path in SCRIPT_PATHS)
             {
-                yield return new ParsedScript(gamePlayer, strategyFile);
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                var files = Directory.EnumerateFiles(path, "*" + fileExtension, SearchOption.AllDirectories);
+                foreach (var strategyFile in files)
+                {
+                    yield return new ParsedScript(gamePlayer, strategyFile);
+                }
             }
         }
     }
