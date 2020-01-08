@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BTD6Automater
 {
-    public class ParsedGame : ScriptedGame
+    public class ParsedScript : ScriptedGame
     {
         private GamePlayer _player;
         string _name;
@@ -15,7 +15,7 @@ namespace BTD6Automater
 
         private Dictionary<string, Tower> towers;
 
-        public ParsedGame(GamePlayer player, string file)
+        public ParsedScript(GamePlayer player, string file)
         {
             _player = player;
             var lines = File.ReadAllLines(file);

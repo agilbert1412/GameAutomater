@@ -38,7 +38,7 @@ namespace GameAutomater
             var files = Directory.EnumerateFiles(@"..\..\..\Strategies\", "*.btd6", SearchOption.AllDirectories);
             foreach (var strategyFile in files)
             {
-                strategies.Add((strategies.Count + 1).ToString()[0], new ParsedGame(btd6Player, strategyFile));
+                strategies.Add((strategies.Count + 1).ToString()[0], new ParsedScript(btd6Player, strategyFile));
             }
         }
 
@@ -74,7 +74,7 @@ namespace GameAutomater
 
         private static void ExecuteStrategy(ScriptedGame strategy, int loops)
         {
-            MinimizeCurrentWindow();
+            winInteractions.MinimizeCurrentWindow();
 
             var loopNum = 0;
 
@@ -83,7 +83,7 @@ namespace GameAutomater
                 ExecuteStrategy(strategy);
             }
 
-            MaximizeCurrentWindow();
+            winInteractions.MaximizeCurrentWindow();
         }
 
         private static void ExecuteStrategy(ScriptedGame strategy)
@@ -102,24 +102,6 @@ namespace GameAutomater
         {
             var coordinates = winInteractions.GetCursorLocation();
             Console.WriteLine("[" + coordinates.X + ", " + coordinates.Y + "]");
-        }
-
-        [DllImport("User32.dll", CallingConvention = CallingConvention.StdCall, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool ShowWindow([In] IntPtr hWnd, [In] int nCmdShow);
-
-        private static void MinimizeCurrentWindow()
-        {
-            IntPtr handle = Process.GetCurrentProcess().MainWindowHandle;
-
-            ShowWindow(handle, 6);
-        }
-
-        private static void MaximizeCurrentWindow()
-        {
-            IntPtr handle = Process.GetCurrentProcess().MainWindowHandle;
-
-            ShowWindow(handle, 9);
         }
     }
 }

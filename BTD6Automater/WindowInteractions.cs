@@ -8,5 +8,7 @@ namespace BTD6Automater
         void SendClick(int x, int y);
         void Focus(string name);
         Point GetCursorLocation();
+        void MinimizeCurrentWindow();
+        void MaximizeCurrentWindow();
     }
 }
