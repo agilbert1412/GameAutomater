@@ -34,6 +34,11 @@ namespace BTD6Automater
 
             var charSeparators = GetCharSeparators(bmp);
 
+            if (charSeparators.Count % 2 != 0)
+            {
+                return "0";
+            }
+
             var text = "";
 
             for (var i = 0; i < charSeparators.Count - 1; i+=2)
