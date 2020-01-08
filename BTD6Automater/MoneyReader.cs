@@ -14,7 +14,7 @@ namespace BTD6Automater
             Graphics g = Graphics.FromImage(bmp);
             g.CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
 
-            //bmp.Save("Test-" + DateTime.Now.Ticks + ".jpg", ImageFormat.Jpeg);
+            bmp.Save("Test.jpg", ImageFormat.Jpeg);
 
             return ReadAmountFromPicture(bmp);
         }
@@ -36,7 +36,7 @@ namespace BTD6Automater
 
             var text = "";
 
-            for (var i = 0; i < charSeparators.Count; i+=2)
+            for (var i = 0; i < charSeparators.Count - 1; i+=2)
             {
                 var charStartX = charSeparators[i];
                 var charEnd = charSeparators[i + 1];
