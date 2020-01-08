@@ -1,0 +1,186 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+
+namespace BTD6Automater
+{
+    public class MoneyReader
+    {
+        public int ReadMoney()
+        {
+            var rect = new Rectangle(270, 15, 150, 40);
+            Bitmap bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
+            Graphics g = Graphics.FromImage(bmp);
+            g.CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
+
+            bmp.Save("Test-" + DateTime.Now.Ticks + ".jpg", ImageFormat.Jpeg);
+
+            return ReadAmountFromPicture(bmp);
+        }
+
+        public int ReadAmountFromPicture(Bitmap image)
+        {
+            return 0;
+        }
+
+        public string ReadTextFromPicture(Bitmap image)
+        {
+            var bmp = MakeBlackAndWhite(image);
+
+            var charSeparators = GetCharSeparators(bmp);
+
+            var text = "";
+
+            for (var i = 0; i < charSeparators.Count-1; i++)
+            {
+                var charStart = charSeparators[i];
+                var charEnd = charSeparators[i + 1];
+                var widthChar = charEnd - charStart;
+
+                if (widthChar < 17)
+                {
+                    text += "1";
+                    continue;
+                }
+
+                text += AnalyzeChar(bmp, charStart, widthChar);
+            }
+
+            return text;
+        }
+
+        private string AnalyzeChar(Bitmap image, int charStartX, int charWidth)
+        {
+            var charStartY = 0;
+            var charHeight = 0;
+            var lastWasWhite = false;
+
+            for (var y = 0; y < image.Height; y++)
+            {
+                var rowHasWhite = false;
+                for (var x = 0; x < image.Width; x++)
+                {
+                    var color = image.GetPixel(x, y);
+                    if (color.ToArgb() == Color.White.ToArgb())
+                    {
+                        rowHasWhite = true;
+                        break;
+                    }
+                }
+
+                if (rowHasWhite)
+                {
+                    if (charStartY == 0)
+                    {
+                        charStartY = y;
+                    }
+                }
+                else if (lastWasWhite)
+                {
+                    charHeight = y - charStartY;
+                }
+                lastWasWhite = rowHasWhite;
+            }
+
+            var middleX = charStartX + (charWidth / 2);
+            var middleY = charStartY + (charHeight / 2);
+
+            var middleIsBlack = IsBlack(image.GetPixel(middleX, middleY))
+                && IsBlack(image.GetPixel(middleX - 1, middleY))
+                && IsBlack(image.GetPixel(middleX + 1, middleY))
+                && IsBlack(image.GetPixel(middleX, middleY - 1))
+                && IsBlack(image.GetPixel(middleX, middleY + 1))
+                && IsBlack(image.GetPixel(middleX, middleY - 2))
+                && IsBlack(image.GetPixel(middleX, middleY + 2));
+
+            if (middleIsBlack)
+            {
+                return "0";
+            }
+
+            return "X";
+        }
+
+        private bool IsBlack(Color color)
+        {
+            return color.R == 0 && color.G == 0 && color.B == 0;
+        }
+
+        public List<int> GetCharSeparators(Bitmap bmp)
+        {
+            var separators = new List<int>();
+            var lastWasWhite = false;
+
+            var lastSeenWhite = 0;
+
+            for (var x = 5; x < bmp.Width; x++)
+            {
+                var columnHasWhite = false;
+                for (var y = 0; y < bmp.Height; y++)
+                {
+                    var color = bmp.GetPixel(x, y);
+                    if (color.ToArgb() == Color.White.ToArgb())
+                    {
+                        columnHasWhite = true;
+                        break;
+                    }
+                }
+
+                if (columnHasWhite)
+                {
+                    lastSeenWhite = x;
+                    if (!lastWasWhite)
+                    {
+                        separators.Add(x);
+                    }
+                }
+                lastWasWhite = columnHasWhite;
+            }
+
+            separators.Add(lastSeenWhite + 1);
+
+            return separators;
+        }
+
+        private bool HasCharacter(Bitmap bmp, Rectangle rect)
+        {
+            var numWhite = 0;
+            for (var x = 0; x < bmp.Width; x++)
+            {
+                for (var y = 0; y < bmp.Height; y++)
+                {
+                    var color = bmp.GetPixel(x, y);
+                    if (color == Color.White)
+                    {
+                        numWhite++;
+                    }
+                }
+            }
+
+            return numWhite > rect.Width + rect.Height;
+        }
+
+        public Bitmap MakeBlackAndWhite(Bitmap bitmap)
+        {
+            for (var x = 0; x < bitmap.Width; x++)
+            {
+                for (var y = 0; y < bitmap.Height; y++)
+                {
+                    var color = bitmap.GetPixel(x, y);
+                    var total = color.R + color.G + color.B;
+                    if (total > 740)
+                    {
+                        bitmap.SetPixel(x, y, Color.White);
+                    }
+                    else
+                    {
+                        bitmap.SetPixel(x, y, Color.Black);
+                    }
+                }
+            }
+
+            return bitmap;
+        }
+    }
+}

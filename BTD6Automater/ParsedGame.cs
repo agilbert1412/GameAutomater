@@ -8,14 +8,16 @@ namespace BTD6Automater
     public class ParsedScript : ScriptedGame
     {
         private GamePlayer _player;
-        string _name;
-        IEnumerable<string> _actions;
+        private MoneyReader _moneyReader;
+        private string _name;
+        private IEnumerable<string> _actions;
 
         private Dictionary<string, Tower> towers;
 
         public ParsedScript(GamePlayer player, string file)
         {
             _player = player;
+            _moneyReader = new MoneyReader();
             var lines = File.ReadAllLines(file);
             _name = lines[0];
             _actions = lines.Skip(1);
@@ -62,6 +64,18 @@ namespace BTD6Automater
             _player.Wait(int.Parse(args[1]));
         }
 
+        private void WaitUntil(string[] args)
+        {
+            var desiredAmount = int.Parse(args[1]);
+            var amount = 0;
+
+            while (desiredAmount > amount)
+            {
+                _player.Wait(1000);
+                amount = _moneyReader.ReadMoney();
+            }
+        }
+
         private void StartRound(string[] args)
         {
             _player.StartRound();
@@ -101,6 +115,7 @@ namespace BTD6Automater
         private void PrepareKeyWordDictionary()
         {
             actionKeywords.Add("wait", Wait);
+            actionKeywords.Add("waituntil", WaitUntil);
             actionKeywords.Add("start", StartRound);
             actionKeywords.Add("ff", ToggleFastForward);
             actionKeywords.Add("place", PlaceTower);
