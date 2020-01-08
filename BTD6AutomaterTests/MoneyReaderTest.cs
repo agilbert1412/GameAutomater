@@ -62,7 +62,7 @@ namespace BTD6AutomaterTests
             var separators = reader.GetCharSeparators(reader.MakeBlackAndWhite(image));
 
             // Assert
-            Assert.AreEqual(expectedText.Count(), separators.Count-1);
+            Assert.AreEqual(expectedText.Count(), separators.Count/2);
         }
 
         private Bitmap GetBitmapFromFile(string file)

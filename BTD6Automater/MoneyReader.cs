@@ -14,14 +14,18 @@ namespace BTD6Automater
             Graphics g = Graphics.FromImage(bmp);
             g.CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
 
-            bmp.Save("Test-" + DateTime.Now.Ticks + ".jpg", ImageFormat.Jpeg);
+            //bmp.Save("Test-" + DateTime.Now.Ticks + ".jpg", ImageFormat.Jpeg);
 
             return ReadAmountFromPicture(bmp);
         }
 
         public int ReadAmountFromPicture(Bitmap image)
         {
-            return 0;
+            int amount = 0;
+
+            int.TryParse(ReadTextFromPicture(image), out amount);
+
+            return amount;
         }
 
         public string ReadTextFromPicture(Bitmap image)
@@ -32,28 +36,86 @@ namespace BTD6Automater
 
             var text = "";
 
-            for (var i = 0; i < charSeparators.Count-1; i++)
+            for (var i = 0; i < charSeparators.Count; i+=2)
             {
-                var charStart = charSeparators[i];
+                var charStartX = charSeparators[i];
                 var charEnd = charSeparators[i + 1];
-                var widthChar = charEnd - charStart;
+                var widthChar = charEnd - charStartX;
 
-                if (widthChar < 17)
-                {
-                    text += "1";
-                    continue;
-                }
+                int charStartY, charHeight;
+                GetCharBoundsY(image, out charStartY, out charHeight);
 
-                text += AnalyzeChar(bmp, charStart, widthChar);
+                text += AnalyzeChar(bmp, charStartX, charStartY, widthChar, charHeight);
             }
 
             return text;
         }
 
-        private string AnalyzeChar(Bitmap image, int charStartX, int charWidth)
+        private string AnalyzeChar(Bitmap image, int charStartX, int charStartY, int charWidth, int charHeight)
         {
-            var charStartY = 0;
-            var charHeight = 0;
+
+            var middleX = charStartX + (charWidth / 2);
+            var middleY = charStartY + (charHeight / 2);
+
+            var digitReader = new DigitDetector();
+
+            if (digitReader.IsOne(image, charWidth))
+            {
+                return "1";
+            }
+
+            if (digitReader.IsZero(image, middleX, middleY))
+            {
+                return "0";
+            }
+
+            if (digitReader.IsThree(image, charHeight, middleX, middleY))
+            {
+                return "3";
+            }
+
+            if (digitReader.IsFive(image, charHeight, middleX, middleY))
+            {
+                return "5";
+            }
+
+            if (digitReader.IsSix(image, charHeight, middleX, middleY))
+            {
+                return "6";
+            }
+
+            if (digitReader.IsNine(image, charHeight, middleX, middleY))
+            {
+                return "9";
+            }
+
+            if (digitReader.IsEight(image, charHeight, middleX, middleY))
+            {
+                return "8";
+            }
+
+            if (digitReader.IsFour(image, charStartX, charStartY, charWidth, charHeight))
+            {
+                return "4";
+            }
+
+            if (digitReader.IsSeven(image, charStartX, charStartY, charWidth))
+            {
+                return "7";
+            }
+
+            if (digitReader.IsTwo(image, charStartX, charStartY, charWidth, charHeight))
+            {
+                return "2";
+            }
+
+            return "X";
+        }
+
+        private static void GetCharBoundsY(Bitmap image, out int charStartY, out int charHeight)
+        {
+            charStartY = 0;
+            charHeight = 0;
             var lastWasWhite = false;
 
             for (var y = 0; y < image.Height; y++)
@@ -82,29 +144,6 @@ namespace BTD6Automater
                 }
                 lastWasWhite = rowHasWhite;
             }
-
-            var middleX = charStartX + (charWidth / 2);
-            var middleY = charStartY + (charHeight / 2);
-
-            var middleIsBlack = IsBlack(image.GetPixel(middleX, middleY))
-                && IsBlack(image.GetPixel(middleX - 1, middleY))
-                && IsBlack(image.GetPixel(middleX + 1, middleY))
-                && IsBlack(image.GetPixel(middleX, middleY - 1))
-                && IsBlack(image.GetPixel(middleX, middleY + 1))
-                && IsBlack(image.GetPixel(middleX, middleY - 2))
-                && IsBlack(image.GetPixel(middleX, middleY + 2));
-
-            if (middleIsBlack)
-            {
-                return "0";
-            }
-
-            return "X";
-        }
-
-        private bool IsBlack(Color color)
-        {
-            return color.R == 0 && color.G == 0 && color.B == 0;
         }
 
         public List<int> GetCharSeparators(Bitmap bmp)
@@ -135,10 +174,14 @@ namespace BTD6Automater
                         separators.Add(x);
                     }
                 }
+                else if (lastWasWhite)
+                {
+                    separators.Add(x);
+                }
                 lastWasWhite = columnHasWhite;
             }
 
-            separators.Add(lastSeenWhite + 1);
+            //separators.Add(lastSeenWhite + 1);
 
             return separators;
         }
@@ -169,7 +212,8 @@ namespace BTD6Automater
                 {
                     var color = bitmap.GetPixel(x, y);
                     var total = color.R + color.G + color.B;
-                    if (total > 740)
+                    var totalDiff = Math.Abs(color.R - color.G) + Math.Abs(color.R - color.B) + Math.Abs(color.B - color.G);
+                    if (total > 700 || (total > 680 && totalDiff < 10))
                     {
                         bitmap.SetPixel(x, y, Color.White);
                     }

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DigitDetector.cs" />
     <Compile Include="MoneyReader.cs" />
     <Compile Include="ParsedGame.cs" />
     <Compile Include="MuddyPuddlesEasy.cs" />
