@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BTD6Automater
 {
+    [Obsolete("All scripted games should be used through the parser", true)]
     public class MuddyPuddlesEasy : ScriptedGame
     {
         GamePlayer _player;

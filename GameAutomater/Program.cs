@@ -1,9 +1,6 @@
 ﻿using BTD6Automater;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime.InteropServices;
 
 namespace GameAutomater
 {
@@ -11,53 +8,46 @@ namespace GameAutomater
     {
         static WindowInteractions winInteractions = new WindowFormInteractions();
         static GamePlayer btd6Player = new GamePlayer(winInteractions);
+        static ScriptLoader scriptLoader = new ScriptLoader();
 
-        static Dictionary<char, ScriptedGame> strategies = new Dictionary<char, ScriptedGame>
-        {
-            {'1', new MuddyPuddlesEasy(btd6Player) }
-        };
+        static Dictionary<string, ScriptedGame> scripts = new Dictionary<string, ScriptedGame>();
 
         static void Main(string[] args)
         {
-            LoadStrategies();
+            var loadedScripts = scriptLoader.LoadScripts(btd6Player, @"..\..\..\Strategies\", ".btd6");
+            foreach (var script in loadedScripts)
+            {
+                scripts.Add((scripts.Count + 1).ToString(), script);
+            }
 
-            var key = 's';
+            var choice = "s";
 
-            while (key != 'q')
+            while (choice != "q")
             {
                 PrintOptionsMenu();
 
-                key = Console.ReadKey().KeyChar;
+                choice = Console.ReadLine();
                 Console.WriteLine();
-                ExecuteChosenOption(key);
+                ExecuteChosenOption(choice);
             }
         }
 
-        private static void LoadStrategies()
+        private static void ExecuteChosenOption(string choice)
         {
-            var files = Directory.EnumerateFiles(@"..\..\..\Strategies\", "*.btd6", SearchOption.AllDirectories);
-            foreach (var strategyFile in files)
-            {
-                strategies.Add((strategies.Count + 1).ToString()[0], new ParsedScript(btd6Player, strategyFile));
-            }
-        }
-
-        private static void ExecuteChosenOption(char key)
-        {
-            if (key == 'm')
+            if (choice == "m")
             {
                 PrintCursorCoordinates();
             }
-            else if (strategies.ContainsKey(key))
+            else if (scripts.ContainsKey(choice))
             {
-                ExecuteSelectedStrategy(key);
+                ExecuteSelectedStrategy(choice);
             }
         }
 
-        private static void ExecuteSelectedStrategy(char key)
+        private static void ExecuteSelectedStrategy(string choice)
         {
             int loops = AskForNumberOfLoops();
-            ExecuteStrategy(strategies[key], loops);
+            ExecuteStrategy(scripts[choice], loops);
         }
 
         private static void PrintOptionsMenu()
@@ -66,7 +56,7 @@ namespace GameAutomater
             Console.WriteLine("\tQ: Exit");
             Console.WriteLine("\tM: Print your current cursor coordinates");
 
-            foreach (var strat in strategies)
+            foreach (var strat in scripts)
             {
                 Console.WriteLine("\t" + strat.Key + ": " + strat.ToString());
             }
