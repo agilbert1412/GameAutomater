@@ -57,6 +57,16 @@ namespace BTD6Automater
             Wait(MINIMUM_DELAY);
         }
 
+        public void SellTower(Tower tower)
+        {
+            Console.WriteLine($"Selling tower {tower.Name}");
+
+            _gameWindow.SendClick(tower.X, tower.Y);
+            Wait(MINIMUM_DELAY);
+            _gameWindow.SendKey("{BACKSPACE}");
+            Wait(MINIMUM_DELAY);
+        }
+
         public void Restart()
         {
             _gameWindow.SendKey("{ESC}");

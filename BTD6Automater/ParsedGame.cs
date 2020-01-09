@@ -114,6 +114,11 @@ namespace BTD6Automater
             _player.UpgradeTower(towers[args[1]], GetPath(args[2]));
         }
 
+        private void SellTower(string[] args)
+        {
+            _player.SellTower(towers[args[1]]);
+        }
+
         private void PrepareKeyWordDictionary()
         {
             actionKeywords.Add("wait", Wait);
@@ -122,6 +127,7 @@ namespace BTD6Automater
             actionKeywords.Add("ff", ToggleFastForward);
             actionKeywords.Add("place", PlaceTower);
             actionKeywords.Add("upgrade", UpgradeTower);
+            actionKeywords.Add("sell", SellTower);
             actionKeywords.Add("freeplay", GoFreePlay);
             actionKeywords.Add("restart", RestartGame);
         }
