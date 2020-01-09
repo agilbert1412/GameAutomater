@@ -22,11 +22,10 @@ namespace BTD6AutomaterTests
 
         public static IEnumerable<string> GetAmountsWithPictures()
         {
-            var files = Directory.EnumerateFiles(@"..\..\TestCases\", "*.jpg");
+            var files = Directory.EnumerateFiles(@"..\..\TestCases\Test\", "*.jpg");
             foreach (var file in files)
             {
-                Debug.WriteLine(file);
-                yield return file.Split('\\').Last().Split('.')[0];
+                yield return file;
             }
         }
 
@@ -35,7 +34,13 @@ namespace BTD6AutomaterTests
         {
             foreach (var file in GetAmountsWithPictures())
             {
-                ExecuteTestReadTextFromPicture(file);
+                var image = (Bitmap)Bitmap.FromFile(file);
+
+                // Act
+                var text = reader.ReadTextFromPicture(image);
+
+                // Assert
+                Debug.WriteLine($"File: {file} | Result: {text}");
             }
         }
 
@@ -204,6 +209,24 @@ namespace BTD6AutomaterTests
             ExecuteTestReadTextFromPicture("1355");
         }
 
+        [TestMethod]
+        public void ReadTextFrom855PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("855");
+        }
+
+        [TestMethod]
+        public void ReadTextFrom78PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("78");
+        }
+
+        [TestMethod]
+        public void ReadTextFrom338PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("338");
+        }
+
         #endregion ReadTextTests
 
         #region ReadNumCharsTests
@@ -339,6 +362,24 @@ namespace BTD6AutomaterTests
         {
             ExecuteTestReadNumCharsFromPicture("1355");
         }
+
+       /* [TestMethod]
+        public void ReadNumCharsFrom855PictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("855");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom78PictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("78");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom338PictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("338");
+        }*/
 
         #endregion ReadNumCharTests
 

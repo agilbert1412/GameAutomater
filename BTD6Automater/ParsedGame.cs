@@ -71,9 +71,10 @@ namespace BTD6Automater
 
             while (desiredAmount > amount)
             {
-                _player.Wait(1000);
+                _player.Wait(100);
                 amount = _moneyReader.ReadMoney();
             }
+            Console.WriteLine("Current Money: " + amount + " (desired: " + desiredAmount + ")");
         }
 
         private void StartRound(string[] args)
@@ -99,12 +100,13 @@ namespace BTD6Automater
         private void PlaceTower(string[] args)
         {
             var towerType = GetTowerType(args[1]);
+            var name = args[4];
             var posX = int.Parse(args[2]);
             var posY = int.Parse(args[3]);
 
-            var tower = _player.PlaceTower(towerType, posX, posY);
+            var tower = _player.PlaceTower(towerType, posX, posY, name);
 
-            towers.Add(args[4], tower);
+            towers.Add(name, tower);
         }
 
         private void UpgradeTower(string[] args)

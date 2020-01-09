@@ -14,7 +14,8 @@ namespace BTD6Automater
             Graphics g = Graphics.FromImage(bmp);
             g.CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
 
-            bmp.Save("Test.jpg", ImageFormat.Jpeg);
+            //bmp.Save($"Test{DateTime.Now.Ticks}.jpg", ImageFormat.Jpeg);
+            bmp.Save($"Test.jpg", ImageFormat.Jpeg);
 
             return ReadAmountFromPicture(bmp);
         }
@@ -48,7 +49,7 @@ namespace BTD6Automater
                 var widthChar = charEnd - charStartX;
 
                 int charStartY, charHeight;
-                GetCharBoundsY(image, out charStartY, out charHeight);
+                GetCharBoundsY(image, charStartX, charEnd, out charStartY, out charHeight);
 
                 text += AnalyzeChar(bmp, charStartX, charStartY, widthChar, charHeight);
             }
@@ -61,6 +62,11 @@ namespace BTD6Automater
 
             var middleX = charStartX + (charWidth / 2);
             var middleY = charStartY + (charHeight / 2);
+
+            if (charHeight < 22)
+            {
+                return "";
+            }
 
             var digitReader = new DigitDetector();
 
@@ -117,7 +123,7 @@ namespace BTD6Automater
             return "X";
         }
 
-        private static void GetCharBoundsY(Bitmap image, out int charStartY, out int charHeight)
+        private static void GetCharBoundsY(Bitmap image, int charStartX, int charEndX, out int charStartY, out int charHeight)
         {
             charStartY = 0;
             charHeight = 0;
@@ -126,7 +132,7 @@ namespace BTD6Automater
             for (var y = 0; y < image.Height; y++)
             {
                 var rowHasWhite = false;
-                for (var x = 0; x < image.Width; x++)
+                for (var x = charStartX; x < charEndX; x++)
                 {
                     var color = image.GetPixel(x, y);
                     if (color.ToArgb() == Color.White.ToArgb())

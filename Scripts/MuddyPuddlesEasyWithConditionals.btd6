@@ -28,7 +28,7 @@ Upgrade sniper1 Bottom
 WaitUntil 1275
 Upgrade sniper1 Top
 
-WaitUntil 135
+WaitUntil 285
 Place Sniper 1100 400 sniper2
 
 WaitUntil 255
@@ -46,7 +46,7 @@ Upgrade sniper2 Middle
 WaitUntil 2720
 Upgrade sniper2 Middle
 
-WaitUntil 135
+WaitUntil 285
 Place Sniper 1100 500 sniper3
 
 WaitUntil 295

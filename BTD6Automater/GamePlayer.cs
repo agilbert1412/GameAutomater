@@ -33,24 +33,28 @@ namespace BTD6Automater
             Thread.Sleep(milliseconds);
         }
 
-        public Tower PlaceTower(TowerType tower, int locationX, int locationY)
+        public Tower PlaceTower(TowerType tower, int locationX, int locationY, string name = "")
         {
             Console.WriteLine("Placing tower " + tower + " at location [" + locationX + ", " + locationY + "]");
 
             SelectTower(tower);
             Wait(MINIMUM_DELAY);
             _gameWindow.SendClick(locationX, locationY);
+            Wait(MINIMUM_DELAY);
 
-            return new Tower(locationX, locationY);
+            return new Tower(tower, name, locationX, locationY);
         }
 
         public void UpgradeTower(Tower tower, UpgradePath path)
         {
+            Console.WriteLine($"Upgrading tower {tower.Name} on {path.ToString()} path");
+
             _gameWindow.SendClick(tower.X, tower.Y);
             Wait(MINIMUM_DELAY);
             _gameWindow.SendKey(GetHotkey(path));
             Wait(MINIMUM_DELAY);
             _gameWindow.SendKey("{ESC}");
+            Wait(MINIMUM_DELAY);
         }
 
         public void Restart()
@@ -60,6 +64,7 @@ namespace BTD6Automater
             _gameWindow.SendClick(780, 640);
             Wait(BUTTON_DELAY);
             _gameWindow.SendClick(830, 530);
+            Wait(MINIMUM_DELAY);
         }
 
         public void GoFreePlay()
@@ -67,6 +72,7 @@ namespace BTD6Automater
             _gameWindow.SendClick(820, 650);
             Wait(BUTTON_DELAY);
             _gameWindow.SendClick(660, 540);
+            Wait(MINIMUM_DELAY);
         }
 
         private void PressSpace()

@@ -87,7 +87,7 @@ namespace BTD6Automater
         internal bool IsFive(Bitmap image, int height, int middleX, int middleY)
         {
             var yFirstHole = middleY - (height / 8) - 1;
-            var ySecondHole = middleY + (height / 8) + 1;
+            var ySecondHole = middleY + (height / 8);
 
             return IsWhite(image.GetPixel(middleX, middleY))
                 && IsWhite(image.GetPixel(middleX + 1, middleY))

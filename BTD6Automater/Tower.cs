@@ -4,9 +4,13 @@
     {
         public int X { get; set; }
         public int Y { get; set; }
+        public TowerType TowerType { get; set; }
+        public string Name { get; set; }
         
-        public Tower(int x, int y)
+        public Tower(TowerType type, string name, int x, int y)
         {
+            TowerType = type;
+            Name = name;
             X = x;
             Y = y;
         }

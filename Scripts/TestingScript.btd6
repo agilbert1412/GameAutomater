@@ -1,0 +1,41 @@
+Muddy Puddles TEST
+
+
+WaitUntil 920
+Place Dart 1100 200 dart1
+
+WaitUntil 1500
+Place Dart 1100 250 dart2
+
+WaitUntil 2200
+Place Dart 1100 300 dart3
+
+WaitUntil 2975
+Place Dart 1100 350 dart4
+
+WaitUntil 3100
+Place Dart 1100 400 dart5
+
+WaitUntil 4700
+Place Dart 1100 450 dart6
+
+WaitUntil 5400
+Place Dart 1100 500 dart7
+
+WaitUntil 6900
+Place Dart 1100 550 dart8
+
+WaitUntil 7500
+Place Dart 1100 600 dart9
+
+WaitUntil 8600
+Place Dart 1100 650 dart10
+
+WaitUntil 9200
+Place Dart 1100 700 dart11
+
+WaitUntil 10300
+Place Dart 1100 750 dart12
+
+WaitUntil 11700
+Place Dart 1100 800 dart13
