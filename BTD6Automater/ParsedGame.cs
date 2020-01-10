@@ -106,6 +106,19 @@ namespace BTD6Automater
             _player.Wait(GamePlayer.MINIMUM_DELAY);
         }
 
+        private void ChangeTargetting(string[] args)
+        {
+            var numberOFChanges = 1;
+            if (args.Length > 1)
+            {
+                int.TryParse(args[2], out numberOFChanges);
+            }
+
+            var tower = towers[args[1]];
+
+            _player.ChangeTargeting(tower, numberOFChanges);
+        }
+
         private void ToggleFastForward(string[] args)
         {
             _player.ToggleFastForward();
@@ -182,6 +195,7 @@ namespace BTD6Automater
             actionKeywords.Add("freeplay", GoFreePlay);
             actionKeywords.Add("restart", RestartGame);
             actionKeywords.Add("collect", CollectBananas);
+            actionKeywords.Add("target", ChangeTargetting);
 
             actionKeywords.Add("set", SetLocation);
         }

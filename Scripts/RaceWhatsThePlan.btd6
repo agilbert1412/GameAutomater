@@ -73,6 +73,8 @@ Send 10
 WaitUntil 300
 Place sniper 600 405 sniper1
 
+Target sniper1 3
+
 WaitUntil 1570
 Upgrade sniper1 Top 2
 

@@ -108,6 +108,21 @@ namespace BTD6Automater
             _gameWindow.SendClick(x, y);
         }
 
+        public void ChangeTargeting(Tower tower, int numChanges)
+        {            
+            _gameWindow.SendClick(tower.X, tower.Y);
+            Wait(MINIMUM_DELAY);
+
+            for (var i = 0; i < numChanges; i++)
+            {
+                _gameWindow.SendKey("{TAB}");
+                Wait(SEND_ROUNDS_DELAY);
+            }
+
+            _gameWindow.SendKey("{ESC}");
+            Wait(MINIMUM_DELAY);
+        }
+
         private void PressSpace()
         {
             _gameWindow.SendKey(" ");
