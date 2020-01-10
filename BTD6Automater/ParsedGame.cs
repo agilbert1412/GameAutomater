@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 
@@ -13,6 +14,7 @@ namespace BTD6Automater
         private IEnumerable<string> _actions;
 
         private Dictionary<string, Tower> towers;
+        private Dictionary<string, Point> setLocations;
 
         public ParsedScript(GamePlayer player, string file)
         {
@@ -28,6 +30,7 @@ namespace BTD6Automater
         public void DoActions()
         {
             towers = new Dictionary<string, Tower>();
+            setLocations = new Dictionary<string, Point>();
 
             _player.Wait(1000);
 
@@ -72,6 +75,7 @@ namespace BTD6Automater
             while (desiredAmount > amount)
             {
                 _player.Wait(100);
+                CollectBananas(args);
                 amount = _moneyReader.ReadMoney(desiredAmount);
             }
             Console.WriteLine("Current Money: " + amount + " (desired: " + desiredAmount + ")");
@@ -80,6 +84,26 @@ namespace BTD6Automater
         private void StartRound(string[] args)
         {
             _player.StartRound();
+        }
+
+        private void SendRoundsInRace(string[] args)
+        {
+            var numberRounds = 1;
+            if (args.Length > 1)
+            {
+                int.TryParse(args[1], out numberRounds);
+            }
+
+            var location = setLocations["send"];
+
+            Console.WriteLine($"Sending {numberRounds} Rounds");
+
+            for (var i = 0; i < numberRounds; i++)
+            {
+                _player.SendOneRoundInRace(location.X, location.Y);
+            }
+
+            _player.Wait(GamePlayer.MINIMUM_DELAY);
         }
 
         private void ToggleFastForward(string[] args)
@@ -111,7 +135,13 @@ namespace BTD6Automater
 
         private void UpgradeTower(string[] args)
         {
-            _player.UpgradeTower(towers[args[1]], GetPath(args[2]));
+            var num = 1;
+            if (args.Length > 3)
+            {
+                num = int.Parse(args[3]);
+            }
+
+            _player.UpgradeTower(towers[args[1]], GetPath(args[2]), num);
         }
 
         private void SellTower(string[] args)
@@ -119,17 +149,41 @@ namespace BTD6Automater
             _player.SellTower(towers[args[1]]);
         }
 
+        private void SetLocation(string[] args)
+        {
+            var name = args[1].ToLower();
+            var x = int.Parse(args[2]);
+            var y = int.Parse(args[3]);
+
+            setLocations.Add(name, new Point(x, y));
+        }
+
+        private void CollectBananas(string[] args)
+        {
+            foreach(var tower in towers.Values)
+            {
+                if (tower.TowerType == TowerType.Farm)
+                {
+                    _player.CollectBananas(tower);
+                }
+            }
+        }
+
         private void PrepareKeyWordDictionary()
         {
             actionKeywords.Add("wait", Wait);
             actionKeywords.Add("waituntil", WaitUntil);
             actionKeywords.Add("start", StartRound);
+            actionKeywords.Add("send", SendRoundsInRace);
             actionKeywords.Add("ff", ToggleFastForward);
             actionKeywords.Add("place", PlaceTower);
             actionKeywords.Add("upgrade", UpgradeTower);
             actionKeywords.Add("sell", SellTower);
             actionKeywords.Add("freeplay", GoFreePlay);
             actionKeywords.Add("restart", RestartGame);
+            actionKeywords.Add("collect", CollectBananas);
+
+            actionKeywords.Add("set", SetLocation);
         }
 
         private Dictionary<string, Action<string[]>> actionKeywords = new Dictionary<string, Action<string[]>>();

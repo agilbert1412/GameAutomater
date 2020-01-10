@@ -6,7 +6,9 @@ namespace BTD6Automater
 {
     public class GamePlayer
     {
-        private const int MINIMUM_DELAY = 200;
+        private const int SEND_ROUNDS_DELAY = 50;
+        private const int FARM_DELTA = 50;
+        public const int MINIMUM_DELAY = 100;
         private const int BUTTON_DELAY = 2000;
 
         private WindowInteractions _gameWindow;
@@ -45,14 +47,17 @@ namespace BTD6Automater
             return new Tower(tower, name, locationX, locationY);
         }
 
-        public void UpgradeTower(Tower tower, UpgradePath path)
+        public void UpgradeTower(Tower tower, UpgradePath path, int numUpgrades = 1)
         {
             Console.WriteLine($"Upgrading tower {tower.Name} on {path.ToString()} path");
 
             _gameWindow.SendClick(tower.X, tower.Y);
             Wait(MINIMUM_DELAY);
-            _gameWindow.SendKey(GetHotkey(path));
-            Wait(MINIMUM_DELAY);
+            for (var i = 0; i < numUpgrades; i++)
+            {
+                _gameWindow.SendKey(GetHotkey(path));
+                Wait(MINIMUM_DELAY);
+            }
             _gameWindow.SendKey("{ESC}");
             Wait(MINIMUM_DELAY);
         }
@@ -83,6 +88,24 @@ namespace BTD6Automater
             Wait(BUTTON_DELAY);
             _gameWindow.SendClick(660, 540);
             Wait(MINIMUM_DELAY);
+        }
+
+        public void CollectBananas(Tower farm)
+        {
+            _gameWindow.PlaceCursor(farm.X - FARM_DELTA, farm.Y - FARM_DELTA);
+            Wait(SEND_ROUNDS_DELAY);
+            _gameWindow.PlaceCursor(farm.X + FARM_DELTA, farm.Y - FARM_DELTA);
+            Wait(SEND_ROUNDS_DELAY);
+            _gameWindow.PlaceCursor(farm.X - FARM_DELTA, farm.Y + FARM_DELTA);
+            Wait(SEND_ROUNDS_DELAY);
+            _gameWindow.PlaceCursor(farm.X + FARM_DELTA, farm.Y + FARM_DELTA);
+            Wait(SEND_ROUNDS_DELAY);
+        }
+
+        public void SendOneRoundInRace(int x, int y)
+        {
+            Wait(SEND_ROUNDS_DELAY);
+            _gameWindow.SendClick(x, y);
         }
 
         private void PressSpace()

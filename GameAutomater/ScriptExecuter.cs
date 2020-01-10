@@ -11,6 +11,7 @@ namespace GameAutomater
             while (loopNum < loops || loops == 0)
             {
                 ExecuteScript(strategy);
+                loopNum++;
             }
         }
 

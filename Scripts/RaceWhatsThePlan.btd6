@@ -1,0 +1,90 @@
+Race What's the Plan (Rake 1-70 with Ben)
+
+Set Send 1207 704
+
+Place Alchemist 747 325 alch1
+Upgrade alch1 Top
+Send 8
+
+WaitUntil 830
+Send 6
+
+WaitUntil 920
+Place Hero 1100 300 benjamin
+
+WaitUntil 510
+Upgrade alch1 Bottom
+
+WaitUntil 425
+Upgrade alch1 Bottom
+
+WaitUntil 125
+Place Submarine 668 282 sub1
+
+WaitUntil 110
+Upgrade sub1 Top
+
+WaitUntil 425
+Upgrade sub1 Top
+
+WaitUntil 1338
+Send 16
+Sell alch1
+Upgrade sub1 Top 2
+
+WaitUntil 945
+Place Farm 400 600 farm1
+
+WaitUntil 425
+Upgrade farm1 Top
+
+WaitUntil 945
+Place Farm 400 700 farm2
+
+WaitUntil 425
+Upgrade farm2 Top
+
+Send 9
+
+WaitUntil 470
+Place Alchemist 747 325 alch2
+
+WaitUntil 1565
+Upgrade alch2 Top 3
+
+WaitUntil 510
+Upgrade farm1 Top
+WaitUntil 510
+Upgrade farm2 Top
+
+WaitUntil 935
+Upgrade farm1 Middle 2
+
+WaitUntil 935
+Upgrade farm2 Middle 2
+
+WaitUntil 2550
+Upgrade farm1 Top
+WaitUntil 2550
+Upgrade farm2 Top
+
+Send 10
+
+WaitUntil 300
+Place sniper 600 405 sniper1
+
+WaitUntil 1570
+Upgrade sniper1 Top 2
+
+WaitUntil 680
+Upgrade sniper1 Bottom 2
+
+WaitUntil 2975
+Upgrade sniper1 Bottom
+
+WaitUntil 4035
+Upgrade sniper1 Bottom
+
+WaitUntil 2125
+Upgrade alch2 Top
+

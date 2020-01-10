@@ -28,6 +28,11 @@ namespace GameAutomater
             mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
         }
 
+        public void PlaceCursor(int x, int y)
+        {
+            Cursor.Position = new Point(x, y);
+        }
+
         public void SendKey(string key)
         {
             SendKeys.SendWait(key);
