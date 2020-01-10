@@ -275,6 +275,12 @@ namespace BTD6AutomaterTests
             ExecuteTestReadTextFromPicture("2283");
         }
 
+        [TestMethod]
+        public void ReadTextFrom1396PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("1396");
+        }
+
         #endregion ReadTextTests
 
         #region ReadNumCharsTests
