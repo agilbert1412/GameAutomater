@@ -64,7 +64,7 @@ Upgrade sniper3 Bottom
 WaitUntil 2975
 Upgrade sniper3 Bottom
 
-Wait 40000
+Wait 37000
 FreePlay
 
 Wait 3000

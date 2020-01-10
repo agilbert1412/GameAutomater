@@ -2,22 +2,33 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
 
 namespace BTD6Automater
 {
     public class MoneyReader
     {
-        public int ReadMoney()
+        private const string FILE_NAME = "Test.jpg";
+
+        public int ReadMoney(int amountToLog = int.MaxValue)
         {
             var rect = new Rectangle(270, 15, 150, 40);
             Bitmap bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
             Graphics g = Graphics.FromImage(bmp);
             g.CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
+        
+            bmp.Save(FILE_NAME, ImageFormat.Jpeg);
 
-            //bmp.Save($"Test{DateTime.Now.Ticks}.jpg", ImageFormat.Jpeg);
-            bmp.Save($"Test.jpg", ImageFormat.Jpeg);
+            var amount = ReadAmountFromPicture(bmp);
 
-            return ReadAmountFromPicture(bmp);
+            if (amount > amountToLog)
+            {
+                File.Copy(FILE_NAME, $"Amount {amount} - {DateTime.Now.Ticks}.jpg");
+                //bmp.Save($"Amount {amount} - {DateTime.Now.Ticks}.jpg", ImageFormat.Jpeg);
+            }
+
+            return amount;
         }
 
         public int ReadAmountFromPicture(Bitmap image)
@@ -105,6 +116,11 @@ namespace BTD6Automater
                 return "8";
             }
 
+            if (digitReader.IsTwo(image, charStartX, charStartY, charWidth, charHeight))
+            {
+                return "2";
+            }
+
             if (digitReader.IsFour(image, charStartX, charStartY, charWidth, charHeight))
             {
                 return "4";
@@ -113,11 +129,6 @@ namespace BTD6Automater
             if (digitReader.IsSeven(image, charStartX, charStartY, charWidth))
             {
                 return "7";
-            }
-
-            if (digitReader.IsTwo(image, charStartX, charStartY, charWidth, charHeight))
-            {
-                return "2";
             }
 
             return "X";
@@ -155,6 +166,20 @@ namespace BTD6Automater
                 }
                 lastWasWhite = rowHasWhite;
             }
+
+            CutIfBoundsAreTooFar(ref charStartY, ref charHeight);
+        }
+
+        private static void CutIfBoundsAreTooFar(ref int charStartY, ref int charHeight)
+        {
+            if (charStartY < 8)
+            {
+                charStartY = 8;
+            }
+            if (charHeight > 25)
+            {
+                charHeight = 25;
+            }
         }
 
         public List<int> GetCharSeparators(Bitmap bmp)
@@ -166,6 +191,11 @@ namespace BTD6Automater
 
             for (var x = 5; x < bmp.Width; x++)
             {
+                if (lastSeenWhite > 0 && x - lastSeenWhite > 6)
+                {
+                    break;
+                }
+
                 var columnHasWhite = false;
                 for (var y = 0; y < bmp.Height; y++)
                 {
@@ -217,6 +247,8 @@ namespace BTD6Automater
 
         public Bitmap MakeBlackAndWhite(Bitmap bitmap)
         {
+            var indexesToReCheck = new List<Point>();
+
             for (var x = 0; x < bitmap.Width; x++)
             {
                 for (var y = 0; y < bitmap.Height; y++)
@@ -228,14 +260,61 @@ namespace BTD6Automater
                     {
                         bitmap.SetPixel(x, y, Color.White);
                     }
-                    else
+                    else if (total < 660 || totalDiff > 12)
                     {
                         bitmap.SetPixel(x, y, Color.Black);
+                    }
+                    else
+                    {
+                        indexesToReCheck.Add(new Point(x, y));
                     }
                 }
             }
 
+            ReCheckInconclusivePixels(bitmap, indexesToReCheck);
+
             return bitmap;
+        }
+
+        private static void ReCheckInconclusivePixels(Bitmap bitmap, List<Point> indexesToReCheck)
+        {
+            while (indexesToReCheck.Any())
+            {
+                var index = indexesToReCheck.First();
+                indexesToReCheck.RemoveAt(0);
+
+                var numAdjacentWhites = 0;
+
+                for (var i = -1; i < 2; i++)
+                {
+                    for (var j = -1; j < 2; j++)
+                    {
+                        if ((i == 0 && j == 0) || index.X + i < 0 || index.X + i >= bitmap.Width || index.Y + j < 0 || index.Y + j >= bitmap.Height)
+                        {
+                            continue;
+                        }
+
+                        var color = bitmap.GetPixel(index.X + i, index.Y + j);
+                        if (color.R == 255 && color.G == 255 && color.B == 255)
+                        {
+                            numAdjacentWhites++;
+                            if (i == 0 || j == 0)
+                            {
+                                numAdjacentWhites++;
+                            }
+                        }
+                    }
+                }
+
+                if (numAdjacentWhites >= 8)
+                {
+                    bitmap.SetPixel(index.X, index.Y, Color.White);
+                }
+                else
+                {
+                    bitmap.SetPixel(index.X, index.Y, Color.Black);
+                }
+            }
         }
     }
 }

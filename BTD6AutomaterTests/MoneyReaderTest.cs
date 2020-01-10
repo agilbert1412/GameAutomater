@@ -32,7 +32,7 @@ namespace BTD6AutomaterTests
         [TestMethod]
         public void ReadTextFromAllPictureTest()
         {
-            foreach (var file in GetAmountsWithPictures())
+            /*foreach (var file in GetAmountsWithPictures())
             {
                 var image = (Bitmap)Bitmap.FromFile(file);
 
@@ -41,7 +41,7 @@ namespace BTD6AutomaterTests
 
                 // Assert
                 Debug.WriteLine($"File: {file} | Result: {text}");
-            }
+            }*/
         }
 
         private void ExecuteTestReadTextFromPicture(string expectedText)
@@ -225,6 +225,54 @@ namespace BTD6AutomaterTests
         public void ReadTextFrom338PictureTest()
         {
             ExecuteTestReadTextFromPicture("338");
+        }
+
+        [TestMethod]
+        public void ReadTextFrom382PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("382");
+        }
+
+        [TestMethod]
+        public void ReadTextFrom424PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("424");
+        }
+
+        [TestMethod]
+        public void ReadTextFrom426PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("426");
+        }
+
+        [TestMethod]
+        public void ReadTextFrom1275PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("1275");
+        }
+
+        [TestMethod]
+        public void ReadTextFrom404PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("404");
+        }
+
+        [TestMethod]
+        public void ReadTextFrom2478PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("2478");
+        }
+
+        [TestMethod]
+        public void ReadTextFrom2899PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("2899");
+        }
+
+        [TestMethod]
+        public void ReadTextFrom2283PictureTest()
+        {
+            ExecuteTestReadTextFromPicture("2283");
         }
 
         #endregion ReadTextTests

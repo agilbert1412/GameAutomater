@@ -22,7 +22,7 @@ namespace BTD6Automater
 
         internal bool IsOne(Bitmap image, int charWidth)
         {
-            return charWidth < 16;
+            return charWidth < 14;
         }
 
         internal bool IsTwo(Bitmap image, int x, int y, int width, int height)
@@ -105,7 +105,6 @@ namespace BTD6Automater
                 && IsBlack(image.GetPixel(middleX, ySecondHole))
                 && IsBlack(image.GetPixel(middleX, ySecondHole + 1))
                 && IsBlack(image.GetPixel(middleX, ySecondHole - 1))
-                && IsBlack(image.GetPixel(middleX + 1, ySecondHole))
                 && IsBlack(image.GetPixel(middleX - 1, ySecondHole))
                 && IsBlack(image.GetPixel(middleX - 2, ySecondHole))
                 && IsBlack(image.GetPixel(middleX - 3, ySecondHole))

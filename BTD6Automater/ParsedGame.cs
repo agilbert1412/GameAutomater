@@ -72,7 +72,7 @@ namespace BTD6Automater
             while (desiredAmount > amount)
             {
                 _player.Wait(100);
-                amount = _moneyReader.ReadMoney();
+                amount = _moneyReader.ReadMoney(desiredAmount);
             }
             Console.WriteLine("Current Money: " + amount + " (desired: " + desiredAmount + ")");
         }
