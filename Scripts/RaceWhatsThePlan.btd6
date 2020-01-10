@@ -27,19 +27,21 @@ Upgrade sub1 Top
 WaitUntil 425
 Upgrade sub1 Top
 
+Target sub1 3
+
 WaitUntil 1338
 Send 16
 Sell alch1
 Upgrade sub1 Top 2
 
 WaitUntil 945
-Place Farm 400 600 farm1
+Place Farm 450 500 farm1
 
 WaitUntil 425
 Upgrade farm1 Top
 
-WaitUntil 945
-Place Farm 400 700 farm2
+WaitUntil 1045
+Place Farm 450 600 farm2
 
 WaitUntil 425
 Upgrade farm2 Top
@@ -48,6 +50,8 @@ Send 9
 
 WaitUntil 470
 Place Alchemist 747 325 alch2
+
+Target alch2 3
 
 WaitUntil 1565
 Upgrade alch2 Top 3
@@ -68,25 +72,110 @@ Upgrade farm1 Top
 WaitUntil 2550
 Upgrade farm2 Top
 
-Send 10
-
-WaitUntil 300
-Place sniper 600 405 sniper1
-
-Target sniper1 3
-
-WaitUntil 1570
-Upgrade sniper1 Top 2
-
-WaitUntil 680
-Upgrade sniper1 Bottom 2
-
-WaitUntil 2975
-Upgrade sniper1 Bottom
-
-WaitUntil 4035
-Upgrade sniper1 Bottom
+Send 4
 
 WaitUntil 2125
 Upgrade alch2 Top
 
+WaitUntil 1470
+Place ninja 734 404 ninja1
+Upgrade ninja1 Top 3
+
+WaitUntil 210
+Upgrade ninja1 Bottom
+
+WaitUntil 2335
+Upgrade ninja1 Top
+
+WaitUntil 935
+Upgrade alch2 Bottom 2
+
+WaitUntil 1045
+Place Farm 450 700 farm3
+
+WaitUntil 935
+Upgrade farm3 Top 2
+WaitUntil 935
+Upgrade farm3 Middle 2
+WaitUntil 2550
+Upgrade farm3 Top
+
+Send 6
+
+WaitUntil 250
+Place Submarine 450 300 subCommander
+
+WaitUntil 5250
+Upgrade subCommander Top 2
+Upgrade subCommander Bottom 4
+
+WaitUntil 8708
+Sell farm1
+Sell farm2
+Sell farm3
+Upgrade subCommander Bottom
+
+Send 7
+
+WaitUntil 1045
+Place Farm 450 500 farm4
+WaitUntil 1045
+Place Farm 450 600 farm5
+
+WaitUntil 935
+Upgrade farm4 Top 2
+WaitUntil 935
+Upgrade farm4 Middle 2
+WaitUntil 2550
+Upgrade farm4 Top
+
+WaitUntil 935
+Upgrade farm5 Top 2
+WaitUntil 935
+Upgrade farm5 Middle 2
+WaitUntil 2550
+Upgrade farm5 Top
+
+Send 3
+
+WaitUntil 15000
+Sell farm4
+Sell farm5
+Sell ninja1
+
+Send 20
+
+WaitUntil 27200
+Upgrade sub1 Top
+
+WaitUntil 470
+Place alchemist 634 404 concoction
+
+Target concoction strong
+
+WaitUntil 3165
+Upgrade concoction Middle 3
+WaitUntil 935
+Upgrade concoction Bottom 2
+
+WaitUntil 1900
+Place ninja 685 602 ninjaRange1
+Place ninja 1041 476 ninjaRange2
+Place ninja 221 431 ninjaRange3
+Place ninja 632 122 ninjaRange4
+
+WaitUntil 2600
+Place sniper 444 411 FastPewPewBoi
+Upgrade FastPewPewBoi Top 2
+Upgrade FastPewPewBoi Bottom 2
+
+Target FastPewPewBoi 3
+
+WaitUntil 2975
+Upgrade FastPewPewBoi Bottom
+WaitUntil 4035
+Upgrade FastPewPewBoi Bottom
+
+WaitUntil 2615
+Place village 547 423 village1
+Upgrade village1 Top 2

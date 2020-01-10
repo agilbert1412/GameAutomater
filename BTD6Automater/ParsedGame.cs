@@ -160,6 +160,7 @@ namespace BTD6Automater
         private void SellTower(string[] args)
         {
             _player.SellTower(towers[args[1]]);
+            towers.Remove(args[1]);
         }
 
         private void SetLocation(string[] args)
