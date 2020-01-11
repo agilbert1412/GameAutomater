@@ -1,4 +1,4 @@
-Race What's the Plan (Rake 1-70 with Ben)
+Race What's the Plan (Rake 1-70 with Ben) V2
 
 Set Send 1207 704
 
@@ -78,7 +78,7 @@ WaitUntil 2125
 Upgrade alch2 Top
 
 WaitUntil 1470
-Place ninja 734 404 ninja1
+Place ninja 749 405 ninja1
 Upgrade ninja1 Top 3
 
 WaitUntil 210
@@ -119,9 +119,6 @@ Send 7
 
 WaitUntil 1045
 Place Farm 450 500 farm4
-WaitUntil 1045
-Place Farm 450 600 farm5
-
 WaitUntil 935
 Upgrade farm4 Top 2
 WaitUntil 935
@@ -129,6 +126,8 @@ Upgrade farm4 Middle 2
 WaitUntil 2550
 Upgrade farm4 Top
 
+WaitUntil 1045
+Place Farm 450 600 farm5
 WaitUntil 935
 Upgrade farm5 Top 2
 WaitUntil 935
@@ -138,55 +137,31 @@ Upgrade farm5 Top
 
 Send 3
 
-WaitUntil 15000
-Sell farm4
-Sell farm5
-Sell ninja1
-
+WaitUntil 4015
+Place ninja 699 405 ninja2
+Upgrade ninja2 Top 4
+Upgrade ninja2 Bottom
 Send 20
-
-WaitUntil 27200
-Upgrade sub1 Top
-
-WaitUntil 1900
-Place ninja 708 566 ninjaRange1
-Place ninja 1041 476 ninjaRange2
-Place ninja 221 431 ninjaRange3
-Place ninja 632 122 ninjaRange4
-
-WaitUntil 2125
-
-WaitUntil 250
-Place Submarine 560 300 subAirburst1
-
-WaitUntil 5250
-Upgrade subAirburst1 Top 2
-Upgrade subAirburst1 Bottom 4
 
 WaitUntil 2615
 Place village 547 423 village1
 Upgrade village1 Top 2
 
-WaitUntil 250
-Place Submarine 440 300 subAirburst2
+WaitUntil 4015
+Place ninja 749 455 ninja3
+Upgrade ninja3 Top 4
+Upgrade ninja3 Bottom
+Send 20
 
-WaitUntil 5250
-Upgrade subAirburst2 Top 2
-Upgrade subAirburst2 Bottom 4
+WaitUntil 4015
+Place ninja 699 455 ninja4
+Upgrade ninja4 Top 4
+Upgrade ninja4 Bottom
+Send 20
 
-WaitUntil 250
-Place Submarine 380 300 subAirburst3
+Sell farm4
+Sell farm5
 
-WaitUntil 5250
-Upgrade subAirburst3 Top 2
-Upgrade subAirburst3 Bottom 4
-
-WaitUntil 250
-Place Submarine 320 300 subAirburst4
-
-WaitUntil 5250
-Upgrade subAirburst4 Top 2
-Upgrade subAirburst4 Bottom 4
 
 WaitUntil 2600
 Place sniper 444 411 FastPewPewBoi
