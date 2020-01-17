@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading;
 
 namespace BTD6Automater
@@ -72,21 +73,21 @@ namespace BTD6Automater
             Wait(MINIMUM_DELAY);
         }
 
-        public void Restart()
+        public void Restart(Point restartButtonLocation, Point isSureButtonLocation)
         {
             _gameWindow.SendKey("{ESC}");
             Wait(BUTTON_DELAY);
-            _gameWindow.SendClick(780, 640);
+            _gameWindow.SendClick(restartButtonLocation.X, restartButtonLocation.Y);
             Wait(BUTTON_DELAY);
-            _gameWindow.SendClick(830, 530);
+            _gameWindow.SendClick(isSureButtonLocation.X, isSureButtonLocation.Y);
             Wait(MINIMUM_DELAY);
         }
 
-        public void GoFreePlay()
+        public void GoFreePlay(Point freePlayButtonLocation, Point okButtonLocation)
         {
-            _gameWindow.SendClick(820, 650);
+            _gameWindow.SendClick(freePlayButtonLocation.X, freePlayButtonLocation.Y);
             Wait(BUTTON_DELAY);
-            _gameWindow.SendClick(660, 540);
+            _gameWindow.SendClick(okButtonLocation.X, okButtonLocation.Y);
             Wait(MINIMUM_DELAY);
         }
 

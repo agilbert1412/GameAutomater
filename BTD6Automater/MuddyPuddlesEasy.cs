@@ -81,10 +81,10 @@ namespace BTD6Automater
             _player.UpgradeTower(sniper3, UpgradePath.Bottom);
             
             _player.Wait(45000);
-            _player.GoFreePlay();
+            //_player.GoFreePlay();
 
             _player.Wait(3000);
-            _player.Restart();
+            //_player.Restart();
             _player.Wait(3000);
 
             _player.Wait(1000);

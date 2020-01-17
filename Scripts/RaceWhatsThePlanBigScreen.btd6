@@ -1,9 +1,9 @@
-Race What's the Plan (Rake 1-70 with Ben) V2
-1024 768
+Race What's the Plan (Rake 1-70 with Ben) V3
+1920 1080
 
-Set Send 1207 704
+Set Send 1707 987
 
-Place Alchemist 747 325 alch1
+Place Alchemist 1049 452 alch1
 Upgrade alch1 Top
 Send 8
 
@@ -11,16 +11,15 @@ WaitUntil 830
 Send 6
 
 WaitUntil 920
-Place Hero 1100 300 benjamin
+Place Hero 1507 365 benjamin
 
-WaitUntil 510
-Upgrade alch1 Bottom
-
-WaitUntil 425
-Upgrade alch1 Bottom
+WaitUntil 680
+Place Alchemist 1049 452 alch2
+Upgrade alch2 Top
+Send 8
 
 WaitUntil 125
-Place Submarine 668 282 sub1
+Place Submarine 940 411 sub1
 
 WaitUntil 110
 Upgrade sub1 Top
@@ -33,16 +32,17 @@ Target sub1 3
 WaitUntil 1338
 Send 16
 Sell alch1
+Sell alch2
 Upgrade sub1 Top 2
 
 WaitUntil 945
-Place Farm 450 500 farm1
+Place Farm 660 980 farm1
 
 WaitUntil 425
 Upgrade farm1 Top
 
 WaitUntil 1045
-Place Farm 450 600 farm2
+Place Farm 660 880 farm2
 
 WaitUntil 425
 Upgrade farm2 Top
@@ -50,7 +50,7 @@ Upgrade farm2 Top
 Send 9
 
 WaitUntil 470
-Place Alchemist 747 325 alch2
+Place Alchemist 1049 452 alch2
 
 Target alch2 3
 
@@ -79,7 +79,7 @@ WaitUntil 2125
 Upgrade alch2 Top
 
 WaitUntil 1470
-Place ninja 749 405 ninja1
+Place ninja 1026 589 ninja1
 Upgrade ninja1 Top 3
 
 WaitUntil 210
@@ -92,7 +92,7 @@ WaitUntil 935
 Upgrade alch2 Bottom 2
 
 WaitUntil 1045
-Place Farm 450 700 farm3
+Place Farm 560 930 farm3
 
 WaitUntil 935
 Upgrade farm3 Top 2
@@ -104,7 +104,7 @@ Upgrade farm3 Top
 Send 6
 
 WaitUntil 250
-Place Submarine 500 300 subCommander
+Place Submarine 695 435 subCommander
 
 WaitUntil 5250
 Upgrade subCommander Top 2
@@ -119,7 +119,7 @@ Upgrade subCommander Bottom
 Send 7
 
 WaitUntil 1045
-Place Farm 450 500 farm4
+Place Farm 660 980 farm4
 WaitUntil 935
 Upgrade farm4 Top 2
 WaitUntil 935
@@ -128,7 +128,7 @@ WaitUntil 2550
 Upgrade farm4 Top
 
 WaitUntil 1045
-Place Farm 450 600 farm5
+Place Farm 660 880 farm5
 WaitUntil 935
 Upgrade farm5 Top 2
 WaitUntil 935
@@ -138,26 +138,6 @@ Upgrade farm5 Top
 
 Send 3
 
-WaitUntil 4015
-Place ninja 699 405 ninja2
-Upgrade ninja2 Top 4
-Upgrade ninja2 Bottom
-Send 20
-
-WaitUntil 2615
-Place village 547 423 village1
-Upgrade village1 Top 2
-
-WaitUntil 4015
-Place ninja 749 455 ninja3
-Upgrade ninja3 Top 4
-Upgrade ninja3 Bottom
-Send 20
-
-WaitUntil 4015
-Place ninja 699 455 ninja4
-Upgrade ninja4 Top 4
-Upgrade ninja4 Bottom
 Send 20
 
 Sell farm4

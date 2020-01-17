@@ -16,12 +16,16 @@ namespace BTD6Automater
         private Dictionary<string, Tower> towers;
         private Dictionary<string, Point> setLocations;
 
+        private Size _resolution;
+
         public ParsedScript(GamePlayer player, string file)
         {
             _player = player;
-            _moneyReader = new MoneyReader();
             var lines = File.ReadAllLines(file);
             _name = lines[0];
+            var resolution = lines[1].Split(' ');
+            _resolution = new Size(int.Parse(resolution[0]), int.Parse(resolution[1]));
+            _moneyReader = new MoneyReader(_resolution.Width, _resolution.Height);
             _actions = lines.Skip(1);
 
             PrepareKeyWordDictionary();
@@ -126,12 +130,12 @@ namespace BTD6Automater
 
         private void GoFreePlay(string[] args)
         {
-            _player.GoFreePlay();
+            _player.GoFreePlay(_freePlayButtonLocations[_resolution], _okButtonLocations[_resolution]);
         }
 
         private void RestartGame(string[] args)
         {
-            _player.Restart();
+            _player.Restart(_restartButtonLocations[_resolution], _isSureButtonLocations[_resolution]);
         }
 
         private void PlaceTower(string[] args)
@@ -212,5 +216,29 @@ namespace BTD6Automater
         {
             return (UpgradePath)Enum.Parse(typeof(UpgradePath), name, true);
         }
+
+        private Dictionary<Size, Point> _freePlayButtonLocations = new Dictionary<Size, Point>()
+        {
+            { new Size(1024, 768), new Point(820, 650) },
+            { new Size(1920, 1080), new Point(1150, 900) }
+        };
+
+        private Dictionary<Size, Point> _okButtonLocations = new Dictionary<Size, Point>()
+        {
+            { new Size(1024, 768), new Point(660, 540) },
+            { new Size(1920, 1080), new Point(960, 760) }
+        };
+
+        private Dictionary<Size, Point> _restartButtonLocations = new Dictionary<Size, Point>()
+        {
+            { new Size(1024, 768), new Point(780, 640) },
+            { new Size(1920, 1080), new Point(1090, 900) }
+        };
+
+        private Dictionary<Size, Point> _isSureButtonLocations = new Dictionary<Size, Point>()
+        {
+            { new Size(1024, 768), new Point(830, 530) },
+            { new Size(1920, 1080), new Point(1175, 760) }
+        };
     }
 }
