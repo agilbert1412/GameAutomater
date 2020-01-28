@@ -9,7 +9,7 @@ namespace BTD6Automater
     {
         private const int SEND_ROUNDS_DELAY = 50;
         private const int FARM_DELTA = 50;
-        public const int MINIMUM_DELAY = 100;
+        public const int MINIMUM_DELAY = 120;
         private const int BUTTON_DELAY = 2000;
 
         private WindowInteractions _gameWindow;
@@ -70,6 +70,7 @@ namespace BTD6Automater
             _gameWindow.SendClick(tower.X, tower.Y);
             Wait(MINIMUM_DELAY);
             _gameWindow.SendKey("{BACKSPACE}");
+            Wait(MINIMUM_DELAY);
             Wait(MINIMUM_DELAY);
         }
 

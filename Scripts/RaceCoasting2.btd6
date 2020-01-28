@@ -1,0 +1,58 @@
+Race Coasting (Coast 1-50 with Pat) - 2
+1920 1080
+
+Set Send 1707 987
+
+Send 8
+
+Wait 2500
+Place Ice 232 534 iceStart
+Upgrade iceStart Middle
+Upgrade iceStart Bottom
+
+WaitUntil 200
+Upgrade iceStart Bottom
+
+WaitUntil 450
+Place Wizard 562 749 wof1 
+
+Send 3
+
+WaitUntil 300
+Upgrade wof1 Middle
+
+WaitUntil 182
+Sell iceStart
+Upgrade wof1 Middle
+
+Send 28
+
+WaitUntil 520
+Sell wof1
+Place wizard 628 454 wof2
+Upgrade wof2 Middle 2
+
+WaitUntil 495
+Sell wof2
+Place wizard 562 749 wof3
+Upgrade wof3 Middle 2
+
+WaitUntil 495
+Sell wof3
+Place wizard 628 454 wof4
+Upgrade wof4 Middle 2
+
+WaitUntil 495
+Sell wof4
+Place wizard 562 749 wof5
+Upgrade wof5 Middle 2
+
+WaitUntil 325
+Place Submarine 1258 595 reactor
+
+WaitUntil 630
+Upgrade reactor Top 2
+
+WaitUntil 1850
+Sell wof5
+Upgrade reactor Top 2

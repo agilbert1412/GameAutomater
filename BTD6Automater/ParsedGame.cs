@@ -78,7 +78,7 @@ namespace BTD6Automater
 
             while (desiredAmount > amount)
             {
-                _player.Wait(100);
+                _player.Wait(200);
                 CollectBananas(args);
                 amount = _moneyReader.ReadMoney(desiredAmount);
             }

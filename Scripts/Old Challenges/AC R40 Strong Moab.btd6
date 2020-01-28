@@ -1,0 +1,22 @@
+AC R40 Strong Fast Moab with Glue and Village
+1920 1080
+
+Place Village 1438 200 village1
+Upgrade village1 Bottom 2
+Place Glue 1338 173 glue1
+Upgrade glue1 Bottom 4
+Sell village1
+Upgrade glue1 Bottom 5
+
+Start
+Wait 1000
+
+Sell glue1
+Place Village 1477 725 village2
+Upgrade village2 Bottom 2
+Place Village 1347 692 village3
+Upgrade village3 Top 4
+Sell village2
+Upgrade village3 Top 1
+
+

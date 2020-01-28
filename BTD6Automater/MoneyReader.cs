@@ -43,7 +43,7 @@ namespace BTD6Automater
                 //bmp.Save($"Amount {amount} - {DateTime.Now.Ticks}.jpg", ImageFormat.Jpeg);
             }
 
-            return amount;
+            return amount; // + 15000;
         }
 
         public int ReadAmountFromPicture(Bitmap image)

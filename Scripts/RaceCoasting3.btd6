@@ -1,0 +1,111 @@
+Race Coasting (Coast 1-50 with Pat) - 3
+1920 1080
+
+Set Send 1707 987
+
+Send 8
+
+Wait 2500
+Place Ice 232 534 iceStart
+Upgrade iceStart Middle
+Upgrade iceStart Bottom
+
+WaitUntil 200
+Upgrade iceStart Bottom
+
+WaitUntil 450
+Place Wizard 562 749 wof1 
+Target wof1 3
+
+Send 2
+
+WaitUntil 300
+Upgrade wof1 Middle
+
+WaitUntil 182
+Sell iceStart
+Upgrade wof1 Middle
+
+Send 29
+
+WaitUntil 500
+Sell wof1
+Place wizard 545 73 wof2
+Upgrade wof2 Middle 2
+
+WaitUntil 495
+Sell wof2
+Place wizard 562 749 wof3
+Upgrade wof3 Middle 2
+
+WaitUntil 495
+Sell wof3
+Place wizard 628 454 wof4
+Upgrade wof4 Middle 2
+
+WaitUntil 495
+Sell wof4
+Place wizard 562 749 wof5
+Upgrade wof5 Middle 2
+
+WaitUntil 325
+Place Submarine 1258 595 reactor
+
+WaitUntil 630
+Upgrade reactor Top 2
+
+WaitUntil 1890
+Sell wof5
+Upgrade reactor Top 2
+
+WaitUntil 450
+Place Wizard 1047 787 wof6
+WaitUntil 1200
+Upgrade wof6 Middle 2
+
+WaitUntil 500
+Place Ice 1407 529 shards1
+WaitUntil 1900
+Upgrade shards1 Top 3
+WaitUntil 225
+Upgrade shards1 Middle
+
+WaitUntil 500
+Place Ice 1377 470 shards2
+WaitUntil 1900
+Upgrade shards2 Top 3
+WaitUntil 225
+Upgrade shards2 Middle
+
+Send 11
+
+WaitUntil 325
+Place Boomerang 1337 539 boomer1
+WaitUntil 400
+Upgrade boomer1 Bottom 2
+WaitUntil 480
+Upgrade boomer1 Top 2
+WaitUntil 1300
+Upgrade boomer1 Top
+WaitUntil 3000
+Upgrade boomer1 Top
+
+WaitUntil 1200
+Place Village 1192 514 supportVillage
+WaitUntil 1900
+Upgrade supportVillage Top 2
+
+WaitUntil 350
+Place sniper 880 517 eliteDefender
+Target eliteDefender 3
+WaitUntil 1850
+Upgrade eliteDefender Top 2
+WaitUntil 800
+Upgrade eliteDefender Bottom 2
+
+WaitUntil 3500
+Upgrade eliteDefender Bottom
+WaitUntil 4750
+Upgrade eliteDefender Bottom
+
+
