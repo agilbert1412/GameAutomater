@@ -1,0 +1,73 @@
+Inferno [EASY] {Benjamin} - With Conditionals Big Screen
+1920 1080
+
+Start
+FF
+Place Dart 492 292 dart1
+
+WaitUntil 920
+Place Hero 1576 604 benjamin
+
+WaitUntil 135
+Place Sniper 61 495 sniper1
+
+WaitUntil 340
+Upgrade sniper1 Bottom
+
+WaitUntil 340
+Upgrade sniper1 Bottom
+
+WaitUntil 295
+Upgrade sniper1 Top
+
+WaitUntil 2975
+Upgrade sniper1 Bottom
+
+WaitUntil 4035
+Upgrade sniper1 Bottom
+
+WaitUntil 1275
+Upgrade sniper1 Top
+
+WaitUntil 285
+Place Sniper 66 558 sniper2
+
+WaitUntil 255
+Upgrade sniper2 Middle
+
+WaitUntil 295
+Upgrade sniper2 Top
+
+WaitUntil 1275
+Upgrade sniper2 Top
+
+WaitUntil 380
+Upgrade sniper2 Middle
+
+WaitUntil 2720
+Upgrade sniper2 Middle
+
+WaitUntil 285
+Place Sniper 70 631 sniper3
+
+WaitUntil 295
+Upgrade sniper3 Top
+
+WaitUntil 1275
+Upgrade sniper3 Top
+
+WaitUntil 340
+Upgrade sniper3 Bottom
+
+WaitUntil 340
+Upgrade sniper3 Bottom
+
+WaitUntil 2975
+Upgrade sniper3 Bottom
+
+Wait 35000
+FreePlay
+
+Wait 3000
+Restart
+Wait 3000
