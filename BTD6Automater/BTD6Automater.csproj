@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BTD6Automater</RootNamespace>
     <AssemblyName>BTD6Automater</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -42,17 +42,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BTD6Menu.cs" />
     <Compile Include="DigitDetector.cs" />
     <Compile Include="MoneyReader.cs" />
     <Compile Include="ParsedGame.cs" />
     <Compile Include="MuddyPuddlesEasy.cs" />
     <Compile Include="ScriptedGame.cs" />
+    <Compile Include="ScriptExecuter.cs" />
+    <Compile Include="ScriptLoader.cs" />
     <Compile Include="Tower.cs" />
     <Compile Include="TowerType.cs" />
     <Compile Include="UpgradePath.cs" />
-    <Compile Include="GamePlayer.cs" />
+    <Compile Include="BTD6GamePlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WindowInteractions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interactions\Interactions.csproj">
+      <Project>{32824D0C-132F-4E28-B831-88F42BCABFFD}</Project>
+      <Name>Interactions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

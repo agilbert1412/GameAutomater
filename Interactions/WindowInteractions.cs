@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace BTD6Automater
+namespace Interactions
 {
     public interface WindowInteractions
     {

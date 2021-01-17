@@ -1,6 +1,4 @@
-﻿using BTD6Automater;
-
-namespace GameAutomater
+﻿namespace BTD6Automater
 {
     public class ScriptExecuter
     {

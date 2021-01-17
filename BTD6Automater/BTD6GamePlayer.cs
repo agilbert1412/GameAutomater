@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
+using Interactions;
 
 namespace BTD6Automater
 {
-    public class GamePlayer
+    public class BTD6GamePlayer
     {
         private const int SEND_ROUNDS_DELAY = 50;
         private const int FARM_DELTA = 50;
@@ -14,7 +15,7 @@ namespace BTD6Automater
 
         private WindowInteractions _gameWindow;
 
-        public GamePlayer(WindowInteractions interactor)
+        public BTD6GamePlayer(WindowInteractions interactor)
         {
             _gameWindow = interactor;
         }

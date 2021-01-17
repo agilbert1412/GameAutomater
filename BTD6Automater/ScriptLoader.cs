@@ -1,8 +1,7 @@
-﻿using BTD6Automater;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
-namespace GameAutomater
+namespace BTD6Automater
 {
     public class ScriptLoader
     {
@@ -13,7 +12,7 @@ namespace GameAutomater
             @".\Scripts\"
         };
 
-        public IEnumerable<ScriptedGame> LoadScripts(GamePlayer gamePlayer, string fileExtension)
+        public IEnumerable<ScriptedGame> LoadScripts(BTD6GamePlayer btd6GamePlayer, string fileExtension)
         {
             foreach (var path in SCRIPT_PATHS)
             {
@@ -25,7 +24,7 @@ namespace GameAutomater
                 var files = Directory.EnumerateFiles(path, "*" + fileExtension, SearchOption.TopDirectoryOnly);
                 foreach (var strategyFile in files)
                 {
-                    yield return new ParsedScript(gamePlayer, strategyFile);
+                    yield return new ParsedScript(btd6GamePlayer, strategyFile);
                 }
             }
         }

@@ -8,7 +8,7 @@ namespace BTD6Automater
 {
     public class ParsedScript : ScriptedGame
     {
-        private GamePlayer _player;
+        private BTD6GamePlayer _player;
         private MoneyReader _moneyReader;
         private string _name;
         private IEnumerable<string> _actions;
@@ -18,7 +18,7 @@ namespace BTD6Automater
 
         private Size _resolution;
 
-        public ParsedScript(GamePlayer player, string file)
+        public ParsedScript(BTD6GamePlayer player, string file)
         {
             _player = player;
             var lines = File.ReadAllLines(file);
@@ -107,7 +107,7 @@ namespace BTD6Automater
                 _player.SendOneRoundInRace(location.X, location.Y);
             }
 
-            _player.Wait(GamePlayer.MINIMUM_DELAY);
+            _player.Wait(BTD6GamePlayer.MINIMUM_DELAY);
         }
 
         private void ChangeTargetting(string[] args)

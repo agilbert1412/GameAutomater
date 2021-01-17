@@ -5,9 +5,9 @@ namespace BTD6Automater
     [Obsolete("All scripted games should be used through the parser", true)]
     public class MuddyPuddlesEasy : ScriptedGame
     {
-        GamePlayer _player;
+        BTD6GamePlayer _player;
 
-        public MuddyPuddlesEasy(GamePlayer player)
+        public MuddyPuddlesEasy(BTD6GamePlayer player)
         {
             _player = player;
         }
