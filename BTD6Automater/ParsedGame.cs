@@ -54,7 +54,7 @@ namespace BTD6Automater
         private void DoAction(string action)
         {
             var actionComponents = action.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            if (actionComponents.Count() < 1)
+            if (actionComponents.Length < 1)
             {
                 return;
             }

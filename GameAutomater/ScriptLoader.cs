@@ -22,7 +22,7 @@ namespace GameAutomater
                     Directory.CreateDirectory(path);
                 }
 
-                var files = Directory.EnumerateFiles(path, "*" + fileExtension, SearchOption.AllDirectories);
+                var files = Directory.EnumerateFiles(path, "*" + fileExtension, SearchOption.TopDirectoryOnly);
                 foreach (var strategyFile in files)
                 {
                     yield return new ParsedScript(gamePlayer, strategyFile);

@@ -9,10 +9,12 @@ namespace GameAutomater
         private const string COMMAND_START = "S";
         private const string COMMAND_EXIT = "Q";
         private const string COMMAND_PRINT_CURSOR_LOCATION = "M";
+        private const string COMMAND_TAKE_MONEY_PIC = "N";
 
         private WindowInteractions _winInteractions;
         private GamePlayer _gamePlayer;
         private ScriptExecuter _scriptExecuter;
+        private MoneyReader _moneyReader;
 
         private Dictionary<string, ScriptedGame> _scripts;
 
@@ -22,6 +24,7 @@ namespace GameAutomater
             _gamePlayer = player;
             _scriptExecuter = executer;
             LoadScripts(scriptLoader);
+            _moneyReader = new MoneyReader(1920, 1080);
         }
 
         internal void Run()
@@ -54,6 +57,10 @@ namespace GameAutomater
             {
                 PrintCursorCoordinates();
             }
+            else if (choice.ToUpper()[0] == COMMAND_TAKE_MONEY_PIC[0])
+            {
+                TakeMoneyPic(choice.Split(' ')[1]);
+            }
             else if (_scripts.ContainsKey(choice))
             {
                 ExecuteSelectedScript(choice);
@@ -76,6 +83,7 @@ namespace GameAutomater
             Console.WriteLine("Choose an option:");
             Console.WriteLine($"\t{COMMAND_EXIT}: Exit");
             Console.WriteLine($"\t{COMMAND_PRINT_CURSOR_LOCATION}: Print your current cursor coordinates");
+            Console.WriteLine($"\t{COMMAND_TAKE_MONEY_PIC}: Take a picture of your current money");
 
             foreach (var script in _scripts)
             {
@@ -94,6 +102,11 @@ namespace GameAutomater
         {
             var coordinates = _winInteractions.GetCursorLocation();
             Console.WriteLine("[" + coordinates.X + ", " + coordinates.Y + "]");
+        }
+
+        private void TakeMoneyPic(string amountInName)
+        {
+            _moneyReader.TakeMoneyPic(amountInName);
         }
     }
 }

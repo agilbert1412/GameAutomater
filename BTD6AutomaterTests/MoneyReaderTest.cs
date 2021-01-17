@@ -92,7 +92,7 @@ namespace BTD6AutomaterTests
         }
         
         #region ReadTextTests SmallScreen
-
+        /*
         [TestMethod]
         public void ReadTextFrom851PictureTest()
         {
@@ -296,12 +296,12 @@ namespace BTD6AutomaterTests
         {
             ExecuteTestReadTextFromPicture("1396");
         }
-
+        */
         #endregion ReadTextTests SmallScreen
-
+        
         #region ReadTextTests BigScreen
 
-        /*[TestMethod]
+        [TestMethod]
         public void ReadTextFrom851BigPictureTest()
         {
             ExecuteTestReadTextFromPicture("851_Big");
@@ -317,7 +317,7 @@ namespace BTD6AutomaterTests
         public void ReadTextFrom857BigPictureTest()
         {
             ExecuteTestReadTextFromPicture("857_Big");
-        }*/
+        }
 
         [TestMethod]
         public void ReadTextFrom860BigPictureTest()
@@ -349,7 +349,7 @@ namespace BTD6AutomaterTests
             ExecuteTestReadTextFromPicture("971_Big");
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void ReadTextFrom977BigPictureTest()
         {
             ExecuteTestReadTextFromPicture("977_Big");
@@ -395,7 +395,7 @@ namespace BTD6AutomaterTests
         public void ReadTextFrom1116BigPictureTest()
         {
             ExecuteTestReadTextFromPicture("1116_Big");
-        }*/
+        }
 
         [TestMethod]
         public void ReadTextFrom1128BigPictureTest()
@@ -409,7 +409,7 @@ namespace BTD6AutomaterTests
             ExecuteTestReadTextFromPicture("1231_Big");
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void ReadTextFrom1235BigPictureTest()
         {
             ExecuteTestReadTextFromPicture("1235_Big");
@@ -419,7 +419,7 @@ namespace BTD6AutomaterTests
         public void ReadTextFrom1240BigPictureTest()
         {
             ExecuteTestReadTextFromPicture("1240_Big");
-        }*/
+        }
 
         [TestMethod]
         public void ReadTextFrom1251BigPictureTest()
@@ -507,8 +507,8 @@ namespace BTD6AutomaterTests
 
         #endregion ReadTextTests BigScreen
 
-        #region ReadNumCharsTests
-
+        #region ReadNumCharsTests SmallScreen
+        /*
         [TestMethod]
         public void ReadNumCharsFrom851PictureTest()
         {
@@ -641,7 +641,7 @@ namespace BTD6AutomaterTests
             ExecuteTestReadNumCharsFromPicture("1355");
         }
 
-       /* [TestMethod]
+        [TestMethod]
         public void ReadNumCharsFrom855PictureTest()
         {
             ExecuteTestReadNumCharsFromPicture("855");
@@ -657,9 +657,163 @@ namespace BTD6AutomaterTests
         public void ReadNumCharsFrom338PictureTest()
         {
             ExecuteTestReadNumCharsFromPicture("338");
-        }*/
+        }
+        */
+        #endregion ReadNumCharTests SmallScreen
 
-        #endregion ReadNumCharTests
+        #region ReadNumCharsTests SmallScreen
+
+        [TestMethod]
+        public void ReadNumCharsFrom851BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("851_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom854BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("854_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom857BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("857_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom860BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("860_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom863BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("863_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom866BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("866_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom869BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("869_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom971BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("971_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom977BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("977_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom980BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("980_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom986BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("986_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom992BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("992_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom995BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("995_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom1108BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("1108_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom1109BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("1109_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom1116BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("1116_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom1128BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("1128_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom1231BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("1231_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom1235BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("1235_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom1240BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("1240_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom1251BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("1251_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom1355BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("1355_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom855BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("855_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom78BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("78_Big");
+        }
+
+        [TestMethod]
+        public void ReadNumCharsFrom338BigPictureTest()
+        {
+            ExecuteTestReadNumCharsFromPicture("338_Big");
+        }
+
+        #endregion ReadNumCharTests BigScreen
 
     }
 }

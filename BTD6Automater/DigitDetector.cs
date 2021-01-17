@@ -29,9 +29,9 @@ namespace BTD6Automater
                             && IsBlack(image.GetPixel(middleX, middleY + 2));
         }
 
-        internal bool IsOne(Bitmap image, int charWidth)
+        internal bool IsOne(int charWidth)
         {
-            return charWidth < 14 * ((multiplierX - 1) * 0.5 + 1);
+            return charWidth < 12 * ((multiplierX - 1) * 0.5 + 1);
         }
 
         internal bool IsTwo(Bitmap image, int x, int y, int width, int height)
@@ -67,13 +67,13 @@ namespace BTD6Automater
                 && IsBlack(image.GetPixel(middleX, yFirstHole - 2))
                 && IsBlack(image.GetPixel(middleX, yFirstHole - 1))
                 && IsBlack(image.GetPixel(middleX, ySecondHole))
-                && IsBlack(image.GetPixel(middleX, ySecondHole + 1))
-                && IsBlack(image.GetPixel(middleX, ySecondHole + 1));
+                && IsBlack(image.GetPixel(middleX, ySecondHole - 1))
+                && IsBlack(image.GetPixel(middleX, ySecondHole - 2));
 
             for (var i = 1; i <= (5 * multiplierX); i++)
             {
                 is3 = is3 && IsBlack(image.GetPixel(middleX - i, yFirstHole - 1));
-                is3 = is3 && IsBlack(image.GetPixel(middleX - i, ySecondHole + 1));
+                is3 = is3 && IsBlack(image.GetPixel(middleX - i, ySecondHole - 1));
             }
 
             return is3;

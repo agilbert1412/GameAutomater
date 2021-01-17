@@ -16,7 +16,7 @@ namespace BTD6Automater
         private double multiplierY;
 
         private static readonly Rectangle SMALL_SCREEN_RECTANGLE = new Rectangle(270, 15, 150, 40);
-        private static readonly Rectangle BIG_SCREEN_RECTANGLE = new Rectangle(383, 25, 206, 54);
+        private static readonly Rectangle BIG_SCREEN_RECTANGLE = new Rectangle(340, 25, 166, 40);
 
         public MoneyReader(int resolutionX, int resolutionY)
         {
@@ -27,12 +27,7 @@ namespace BTD6Automater
 
         public int ReadMoney(int amountToLog = int.MaxValue)
         {
-            var rect = BIG_SCREEN_RECTANGLE;
-            Bitmap bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
-            Graphics g = Graphics.FromImage(bmp);
-            g.CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
-        
-            bmp.Save(FILE_NAME, ImageFormat.Jpeg);
+            var bmp = TakeMoneyPic();
 
             var amount = ReadAmountFromPicture(bmp);
             //File.Copy(FILE_NAME, $"Amount {amount} - {DateTime.Now.Ticks}.jpg");
@@ -44,6 +39,20 @@ namespace BTD6Automater
             }
 
             return amount; // + 15000;
+        }
+
+        public Bitmap TakeMoneyPic(string amountInName = "")
+        {
+            var rect = BIG_SCREEN_RECTANGLE;
+            Bitmap bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
+            Graphics g = Graphics.FromImage(bmp);
+            g.CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
+
+            var filename = amountInName == "" ? FILE_NAME : (amountInName + (multiplierX > 1.5 ? "_Big" : "") + ".jpg");
+
+            bmp.Save(filename, ImageFormat.Jpeg);
+
+            return bmp;
         }
 
         public int ReadAmountFromPicture(Bitmap image)
@@ -94,7 +103,7 @@ namespace BTD6Automater
                 return "";
             }
 
-            if (_digitReader.IsOne(image, charWidth))
+            if (_digitReader.IsOne(charWidth))
             {
                 return "1";
             }
@@ -185,13 +194,13 @@ namespace BTD6Automater
 
         private void CutIfBoundsAreTooFar(ref int charStartY, ref int charHeight)
         {
-            if (charStartY < 8)
+            if (charStartY < 2)
             {
-                charStartY = 8;
+                charStartY = 2;
             }
-            if (charHeight > 25 * multiplierY)
+            if (charHeight > 23 * multiplierY)
             {
-                charHeight = (int)(25 * multiplierY);
+                charHeight = (int)(23 * multiplierY);
             }
         }
 
